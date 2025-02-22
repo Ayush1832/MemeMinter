@@ -1,0 +1,12 @@
+.app {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+  }
+  

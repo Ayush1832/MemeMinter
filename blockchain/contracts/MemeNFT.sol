@@ -15,7 +15,7 @@ contract MemeNFT is ERC721URIStorage, Ownable {
     event EngagementUpdated(uint256 indexed tokenId, uint256 likes, uint256 shares, uint256 resales);
     event MemeBoosted(uint256 indexed tokenId);
 
-    constructor() ERC721("MemeNFT", "MEME") {}
+    constructor(address initialOwner) ERC721("MemeNFT", "MEME") Ownable(initialOwner) {}
 
     function mintMeme(string memory tokenURI) external {
         uint256 newTokenId = _tokenIdCounter;
@@ -27,7 +27,9 @@ contract MemeNFT is ERC721URIStorage, Ownable {
     }
 
     function updateEngagement(uint256 tokenId, uint256 newLikes, uint256 newShares, uint256 newResales) external {
-        require(_exists(tokenId), "Token does not exist");
+        // Check if the token exists by calling ownerOf
+        ownerOf(tokenId);
+
         likes[tokenId] += newLikes;
         shares[tokenId] += newShares;
         resales[tokenId] += newResales;
@@ -40,7 +42,9 @@ contract MemeNFT is ERC721URIStorage, Ownable {
     }
 
     function boostMeme(uint256 tokenId) internal {
-        require(_exists(tokenId), "Token does not exist");
+        // Check if the token exists by calling ownerOf
+        ownerOf(tokenId);
+
         require(!boosted[tokenId], "Already boosted");
         boosted[tokenId] = true;
         emit MemeBoosted(tokenId);

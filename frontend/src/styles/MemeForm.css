@@ -1,0 +1,17 @@
+.meme-form {
+    margin: 20px;
+  }
+  
+  .meme-form input {
+    width: 300px;
+    padding: 10px;
+  }
+  
+  .meme-form button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
